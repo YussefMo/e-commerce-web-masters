@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import AppLayout from '../components/AppLayout';
 import { lazy } from 'react';
+import Blog from '../pages/Blog/Blog';
 import Contact from '../pages/Contact';
 const Home = lazy(() => import('../pages/Home'));
 
@@ -13,15 +14,13 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <Home />
-      }
-    ]
-  },
-  {
-    path: 'contact',
-    element: <AppLayout />,
-    children: [
+      },
       {
-        index : true,
+        path:'/blog',
+        element:<Blog/>
+      },
+      {
+        path: '/contact',
         element: <Contact />
       }
     ]

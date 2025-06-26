@@ -4,6 +4,7 @@ import { MdOutlineBakeryDining } from "react-icons/md";
 import { PiCoffeeLight } from "react-icons/pi";
 import { IoMenuOutline } from "react-icons/io5";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function BottomHeader() {
   const [showMenu, setShowMenu] = useState(false);
@@ -43,9 +44,9 @@ function BottomHeader() {
           </a>
         </li>
         <li>
-          <a href="#" className="text-xs text-blackColor flex items-center gap-1 hover:text-primaryColor transition px-3 py-2 rounded-2xl hover:bg-[#F0FAFF]">
+          <Link to="/blog" className="text-xs text-blackColor flex items-center gap-1 hover:text-primaryColor transition px-3 py-2 rounded-2xl hover:bg-[#F0FAFF]">
             BLOG
-          </a>
+          </Link>
         </li>
         <li>
           <a href="#" className="text-xs text-blackColor flex items-center gap-1 hover:text-primaryColor transition px-3 py-2 rounded-2xl hover:bg-[#F0FAFF]">

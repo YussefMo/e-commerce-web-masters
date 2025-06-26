@@ -26,4 +26,20 @@ body {
     --color-primaryColor: #35AFA0;
     --color-blackColor: #3E445A;
     --color-footerBg: #F7F8FD;
+    --color-blog-text :#202435,
+   
 }
+ 
+.post-text{
+    @apply w-9/12 text-[12px] font-medium text-blog-text  md:text-[16px]
+}
+.badget{
+    @apply flex justify-center items-center  rounded-full w-[20px] h-[20px] text-white bg-primaryColor absolute top-0 left-7 cursor-pointer border border-l-2 border-l-white
+}
+
+.social-style{
+    @apply w-[48%] sm:w-full text-[14px]  text-white flex cursor-pointer items-center p-2.5 rounded-md gap-5
+}
+ .li-style{
+    @apply w-[31%]  mt-5
+ }

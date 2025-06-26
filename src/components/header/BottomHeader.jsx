@@ -4,7 +4,7 @@ import { MdOutlineBakeryDining } from "react-icons/md";
 import { PiCoffeeLight } from "react-icons/pi";
 import { IoMenuOutline } from "react-icons/io5";
 import { useState } from "react";
-
+import { Link } from "react-router-dom";
 function BottomHeader() {
   const [showMenu, setShowMenu] = useState(false);
   const navItems = ['HOME', 'SHOP', 'MEATS & SEAFOOD', 'BAKERY', 'BEVERAGES', 'BLOG', 'CONTACT'];
@@ -19,8 +19,8 @@ function BottomHeader() {
       {/* nav items */}
       <ul className="flex items-center max-lg:hidden">
         <li>
-          <a href="#" className="text-xs text-primaryColor flex items-center gap-1 hover:text-primaryColor transition
-          bg-[#F0FAFF] px-3 py-2 rounded-2xl">HOME <FaAngleDown /></a>
+          <Link to="#" className="text-xs text-primaryColor flex items-center gap-1 hover:text-primaryColor transition
+          bg-[#F0FAFF] px-3 py-2 rounded-2xl">HOME <FaAngleDown /></Link>
         </li>
         <li>
           <a href="#" className="text-xs text-blackColor flex items-center gap-1 hover:text-primaryColor transition px-3 py-2 rounded-2xl hover:bg-[#F0FAFF]">
@@ -48,9 +48,10 @@ function BottomHeader() {
           </a>
         </li>
         <li>
-          <a href="#" className="text-xs text-blackColor flex items-center gap-1 hover:text-primaryColor transition px-3 py-2 rounded-2xl hover:bg-[#F0FAFF]">
+          
+          <Link to="contact" className="text-xs text-blackColor flex items-center gap-1 hover:text-primaryColor transition px-3 py-2 rounded-2xl hover:bg-[#F0FAFF]">
             CONTACT
-          </a>
+          </Link>
         </li>
       </ul>
       {/* toggle menu */}

@@ -3,7 +3,7 @@ import { useState } from "react";
 import { FaStar } from "react-icons/fa";
 
 
-function Item({el}) {
+function Item({el,onQuickView }) {
 
   const [count , setCount] = useState(0)
 
@@ -16,7 +16,7 @@ function Item({el}) {
   }
   
   return (
-    <div className="card p-5 border-x border-b border-[#EDEEF5]">
+    <div className="card p-5 border-x border-b border-[#EDEEF5]" onClick={onQuickView}>
         <div className="img p-3 my-5 cursor-pointer">
             <img src= {el.images[0] || el.category.image} alt="" className="w-full h-full rounded-2xl"/>
         </div>

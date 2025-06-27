@@ -1,8 +1,7 @@
-import React from 'react';
 import PostsContainer from './PostsContainer';
 import SocialMedia from './SocialMedia';
-import WidgetBaner from './WidgetBaner';
 import Tags from './Tags';
+import WidgetBaner from './WidgetBaner';
 
 const SocialSide = () => {
   return (

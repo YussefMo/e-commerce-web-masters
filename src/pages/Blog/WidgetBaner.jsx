@@ -1,14 +1,14 @@
-import bannerImg from '../../../src/assets/images/sidebar-banner.gif.png'
+import bannerImg from '../../../src/assets/images/sidebar-banner.gif.png';
 
 const WidgetBaner = () => {
   return (
-    <div className=' lg:w-full'>
+    <div className="lg:w-full">
       <div>
-        <h6 className='my-5 font-semibold text-[#202435]'>WIDGET BANNER</h6>
-        <img src={bannerImg} alt="banner image" className='w-full' />
+        <h6 className="my-5 font-semibold text-[#202435]">WIDGET BANNER</h6>
+        <img src={bannerImg} alt="banner image" className="w-full" />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default WidgetBaner
+export default WidgetBaner;

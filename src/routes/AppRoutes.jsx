@@ -2,10 +2,12 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import AppLayout from '../components/AppLayout';
 import { lazy } from 'react';
 
-import Blog from '../pages/Blog/Blog';
-import Contact from '../pages/Contact';
+
 const Home = lazy(() => import('../pages/Home'));
+const Blog = lazy(() => import('../pages/Blog/Blog'));
+const Contact = lazy(() => import('../pages/Contact'));
 const Shop = lazy(() => import("../components/Shop/Shop"))
+
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const router = createBrowserRouter([
@@ -23,8 +25,8 @@ export const router = createBrowserRouter([
       }
       },
       {
-        path:'/blog',
-        element:<Blog/>
+        path: '/blog',
+        element: <Blog />
       },
       {
         path: '/contact',

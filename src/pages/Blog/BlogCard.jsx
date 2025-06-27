@@ -27,6 +27,7 @@ const BlogCard = () => {
               src={item.Imgsrc}
               alt="Blog Image"
               className="w-full transform rounded-t-md transition duration-1000 hover:scale-95"
+              loading="lazy"
             />
             <div>
               <h6 className="my-5 text-[#9B9BB4]">{item.subTitle}</h6>

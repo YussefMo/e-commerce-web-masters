@@ -1,3 +1,4 @@
+
 import BlogCard from "./BlogCard";
 import SocialSide from "./SocialSide";
 
@@ -13,6 +14,7 @@ const Blog = () => {
           <SocialSide/>
         </div>
       </div>
+    
     </section>
   );
 };

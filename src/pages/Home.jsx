@@ -1,9 +1,25 @@
+import BestSealers from '../components/Home/BestSealers';
+import BlogShop from '../components/Home/BlogShop';
+import Category from '../components/Home/Category';
+import Discounts from '../components/Home/Discounts';
+import Hero from '../components/Home/Hero';
+import ShopNow from '../components/Home/ShopNow';
+import SuperDiscount from '../components/Home/SuperDiscount';
+
 function Home() {
   return (
-    <div className="text-black text-5xl text-center min-h-screen p-20">
-      Home
-    </div>
-  )
+    <>
+      <Hero />
+      <div className="mx-auto max-w-[1200px] px-3">
+        <Category />
+        <Discounts />
+        <ShopNow />
+        <BestSealers />
+        <SuperDiscount />
+        <BlogShop />
+      </div>
+    </>
+  );
 }
 
-export default Home
+export default Home;

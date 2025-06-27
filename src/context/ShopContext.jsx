@@ -53,21 +53,20 @@ export const ShopContextProvider = ({ children }) => {
     }
 
     // filterData by Category
-    const getProductsByCategory = async ({ selectedCategories }) => {
+    const getProductsByCategory = async (categoryId) => {
+        setLoading(true);
         try {
-            let allProducts = [];
-
-            // لكل categoryId اعمل طلب بيانات
-            for (const id of selectedCategories) {
-            const { data } = await axios.get("https://api.escuelajs.co/api/v1/products", {
-                params: { categoryId: id },
-            });
-            allProducts = [...allProducts, ...data];
+            let url = "https://api.escuelajs.co/api/v1/products";
+            if (categoryId) {
+                url = `https://api.escuelajs.co/api/v1/categories/${categoryId}/products`;
             }
-
-            setAllData(allProducts);
+            const { data } = await axios.get(url);
+            setAllData(data);
         } catch (err) {
-            console.error("Error fetching category products:", err);
+            console.error("Error while fetching data:", err);
+            setError(err);
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -135,11 +134,9 @@ export const ShopContextProvider = ({ children }) => {
 
 
     useEffect(() => {
-        getAllData()
-    }, [])
-    useEffect(() => {
-        getAllCategories()
-    }, [])
+        getAllData();
+        getAllCategories();
+    }, []);
 
     return (
         <ShopContext.Provider value={{ allData, loading, error, allCategories, getProductsByCategory, getFilteredDataByPrice, sort, sortingData, getAllData, currentPage, totalPages }}>

@@ -24,9 +24,9 @@ function BottomHeader() {
           bg-[#F0FAFF] px-3 py-2 rounded-2xl">HOME <FaAngleDown /></Link>
         </li>
         <li>
-          <a href="#" className="text-xs text-blackColor flex items-center gap-1 hover:text-primaryColor transition px-3 py-2 rounded-2xl hover:bg-[#F0FAFF]">
+          <Link to={"Shop"} className="text-xs text-blackColor flex items-center gap-1 hover:text-primaryColor transition px-3 py-2 rounded-2xl hover:bg-[#F0FAFF]">
             SHOP
-          </a>
+          </Link>
         </li>
         <li>
           <a href="#" className="text-xs text-blackColor flex items-center gap-1 hover:text-primaryColor transition px-3 py-2 rounded-2xl hover:bg-[#F0FAFF]">

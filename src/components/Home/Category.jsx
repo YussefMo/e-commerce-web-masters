@@ -2,38 +2,11 @@ import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { ShopContext } from '../../context/ShopContext';
 
-const categories = [
-  {
-    id: 87,
-    name: 'Clothes',
-    image: '/cloth.jpeg'
-  },
-  {
-    id: 88,
-    name: 'Electronics',
-    image: '/elc.jpeg'
-  },
-  {
-    id: 89,
-    name: 'Furniture',
-    image: '/furn.jpeg'
-  },
-  {
-    id: 90,
-    name: 'Shoes',
-    image: '/sho.jpeg'
-  },
-  {
-    id: 91,
-    name: 'Miscellaneous',
-    image: '/miscell.jpg'
-  }
-];
 
 function Category() {
   const navigate = useNavigate();
 
-  const { getProductsByCategory } = useContext(ShopContext);
+  const { allCategories, getProductsByCategory } = useContext(ShopContext);
 
   const handleCategoryClick = (categoryId) => {
     getProductsByCategory(categoryId);
@@ -42,7 +15,7 @@ function Category() {
 
   return (
     <div className="my-10 grid grid-cols-3 md:grid-cols-5 border-1 border-gray-300">
-      {categories.map((category) => (
+      {allCategories.map((category) => (
         <div
           key={category.id}
           className="cursor-pointer border-1 border-gray-300 py-5 text-center"

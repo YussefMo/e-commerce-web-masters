@@ -1,19 +1,9 @@
-'use client';
-
 import clsx from 'clsx';
+import { BiChevronLeft, BiChevronRight } from 'react-icons/bi';
 
-import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-
-
 function Pagination({ currentPage, totalPages }) {
-
-
-  // Prefetch the next and prev page when component mounts or currentPage changes
-  // Prefetch the next and prev page when component mounts or currentPage changes
-
-
   const getPageNumbers = () => {
     const pages = [1];
 
@@ -43,21 +33,26 @@ function Pagination({ currentPage, totalPages }) {
 
   const linkClass = (active) =>
     clsx(
-      'border text-sm flex items-center justify-center w-8 h-8',
+      'border text-sm flex items-center justify-center w-8 h-8 rounded-full',
       active
-        ? 'bg-primary-identity text-white border-primary-identity'
-        : 'bg-primary-foreground hover:bg-muted border-input text-muted-foreground'
+        ? 'bg-primaryColor text-white border-primaryColor'
+        : 'border-primaryColor text-primaryColor hover:bg-primaryColor hover:text-white'
     );
 
   return (
-    <section className="mt-40 flex justify-center pt-4">
+    <section className="mt-10 flex justify-center pt-4 pb-10">
       <div className="flex items-center gap-5">
         <Link
-          href={currentPage > 1 ? `?page=${currentPage - 1}` : '#'}
-          className={`${currentPage !== 1 ? 'bg-primary-foreground border-primary-identity border-1' : 'bg-primary-foreground hover:bg-muted border-input text-muted-foreground'} ${currentPage === 1 ? 'cursor-not-allowed opacity-50' : ''} flex h-10 w-10 items-center justify-center rounded-md`}
+          to={currentPage > 1 ? `?page=${currentPage - 1}` : '#'}
+          className={clsx(
+            'border-primaryColor text-primaryColor flex h-10 w-10 items-center justify-center rounded-md border',
+            currentPage > 1
+              ? 'hover:bg-primaryColor hover:text-white'
+              : 'cursor-not-allowed opacity-50'
+          )}
           aria-disabled={currentPage === 1}
         >
-          <ChevronLeft className="text-primary-identity h-5 w-5" />
+          <BiChevronLeft className="h-5 w-5" />
         </Link>
 
         <div className="flex gap-5">
@@ -67,8 +62,8 @@ function Pagination({ currentPage, totalPages }) {
                 <span className="text-muted-foreground px-2">...</span>
               ) : (
                 <Link
-                  href={`?page=${page}`}
-                  className={`${linkClass(currentPage === page)} rounded-full`}
+                  to={`?page=${page}`}
+                  className={linkClass(currentPage === page)}
                 >
                   {page}
                 </Link>
@@ -78,11 +73,16 @@ function Pagination({ currentPage, totalPages }) {
         </div>
 
         <Link
-          href={currentPage < totalPages ? `?page=${currentPage + 1}` : '#'}
-          className={`${currentPage !== totalPages ? 'bg-primary-foreground border-primary-identity border-1' : 'bg-primary-foreground hover:bg-muted border-input text-muted-foreground'} ${currentPage === totalPages ? 'cursor-not-allowed opacity-50' : ''} flex h-10 w-10 items-center justify-center rounded-md`}
+          to={currentPage < totalPages ? `?page=${currentPage + 1}` : '#'}
+          className={clsx(
+            'border-primaryColor text-primaryColor flex h-10 w-10 items-center justify-center rounded-md border',
+            currentPage < totalPages
+              ? 'hover:bg-primaryColor hover:text-white'
+              : 'cursor-not-allowed opacity-50'
+          )}
           aria-disabled={currentPage === totalPages}
         >
-          <ChevronRight className="text-primary-identity h-5 w-5" />
+          <BiChevronRight className="h-5 w-5" />
         </Link>
       </div>
     </section>

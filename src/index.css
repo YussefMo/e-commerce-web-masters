@@ -23,10 +23,11 @@ body {
 }
 
 @theme {
-  --color-primaryColor: #35afa0;
-  --color-blackColor: #3e445a;
-  --color-footerBg: #f7f8fd;
-  --color-blog-text: #202435;
+    --color-primaryColor: #35AFA0;
+    --color-blackColor: #3E445A;
+    --color-footerBg: #F7F8FD;
+    --color-graycolor : #9B9BB4;
+    --color-blog-text :#202435,
 }
 
 .post-text {

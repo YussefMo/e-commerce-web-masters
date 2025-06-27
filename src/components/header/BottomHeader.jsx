@@ -61,12 +61,10 @@ function BottomHeader() {
           </Link>
         </li>
         <li>
-          <a
-            href="#"
-            className={`hover:text-primaryColor flex items-center gap-1 rounded-2xl px-3 py-2 text-xs transition hover:bg-[#F0FAFF] ${path === '#' && 'text-primaryColor bg-[#F0FAFF]'}`}
-          >
+
+          <Link to="/shop" className={`hover:text-primaryColor flex items-center gap-1 rounded-2xl px-3 py-2 text-xs transition hover:bg-[#F0FAFF] ${path === '/shop' && 'text-primaryColor bg-[#F0FAFF]'}`}>
             SHOP
-          </a>
+          </Link>
         </li>
         <li>
           <a

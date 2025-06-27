@@ -49,7 +49,7 @@ const Cart = () => {
 
         <button
           onClick={() => navigate("/checkout")}
-          className="cursor-pointer bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md transition duration-200"
+          className="cursor-pointer bg-primaryColor text-white px-6 py-2 rounded-md transition duration-200"
         >
           Go to Checkout
         </button>

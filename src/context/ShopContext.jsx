@@ -1,0 +1,139 @@
+import { createContext, useEffect, useState } from "react"
+import axios from "axios"
+
+
+export const ShopContext = createContext()
+
+
+export const ShopContextProvider = ({ children }) => {
+
+    const [allData, setAllData] = useState([])
+    const [allCategories , setAllCategories] = useState([])
+    const [loading, setLoading] = useState(true)      
+    const [error, setError] = useState(null)     
+    
+    const [sort , setSort] = useState(null)
+
+
+
+    // fetching All Products form api
+    const getAllData = async () => {
+        try {
+        const { data } = await axios.get("https://api.escuelajs.co/api/v1/products")
+        setAllData(data)
+        } catch (err) {
+        console.error("Error while fetching data:", err)
+        setError(err)
+        } finally {
+        setLoading(false)
+        }
+    }
+
+    // fetching all Categories from api 
+    const getAllCategories = async () => {
+        try {
+        const { data } = await axios.get("https://api.escuelajs.co/api/v1/categories")
+        setAllCategories(data)
+        } catch (err) {
+        console.error("Error while fetching data:", err)
+        setError(err)
+        } finally {
+        setLoading(false)
+        }
+    }
+
+    // filterData by Category
+    const getProductsByCategory = async ({ selectedCategories }) => {
+        try {
+            let allProducts = [];
+
+            // لكل categoryId اعمل طلب بيانات
+            for (const id of selectedCategories) {
+            const { data } = await axios.get("https://api.escuelajs.co/api/v1/products", {
+                params: { categoryId: id },
+            });
+            allProducts = [...allProducts, ...data];
+            }
+
+            setAllData(allProducts);
+        } catch (err) {
+            console.error("Error fetching category products:", err);
+        }
+    }
+
+
+    // filterData by Price Range
+    const getFilteredDataByPrice = async ({maxPrice , minPrice}) => {
+        try {
+            const { data } = await axios.get("https://api.escuelajs.co/api/v1/products", {
+            params: {
+                price_min: minPrice,
+                price_max: maxPrice
+            }
+            });
+            setAllData(data)
+        } catch (err) {
+            console.error("Error fetching filtered data:", err)
+        }
+    };
+
+
+    // this function to sorting data in select
+    function sortingData(e) {
+        const state = e.target.value
+
+        switch (state) {
+            case "name(A-Z)" :
+            allData.sort((a, b)=>{
+                return a.title > b.title ? 1 : -1
+            })
+            setSort("name(A-Z)")
+            setAllData([...allData])
+            break ;
+
+            case "name(Z-A)" :
+                allData.sort((a , b)=>{
+                    return a.title < b.title ? 1 : -1
+                })
+            setSort("name(Z-A)")
+            setAllData([...allData])
+            break ;
+
+            case "price(low-high)" :
+                allData.sort((a , b)=>{
+                    return a.price - b.price
+                })
+            setSort("price(low-high)")
+            setAllData([...allData])  
+            break ;
+            
+            case "price(high-low)" :
+                allData.sort((a , b)=> {
+                    return b.price - a.price
+                })
+            setSort("price(high-low)")
+            setAllData([...allData])
+            break ;
+
+            default :
+            setSort("Default")
+            getAllData()
+        }
+        
+        
+    }
+
+
+    useEffect(() => {
+        getAllData()
+    }, [])
+    useEffect(() => {
+        getAllCategories()
+    }, [])
+
+    return (
+        <ShopContext.Provider value={{ allData, loading, error , allCategories , getProductsByCategory , getFilteredDataByPrice , sort , sortingData}}>
+        {children}
+        </ShopContext.Provider>
+    )
+}

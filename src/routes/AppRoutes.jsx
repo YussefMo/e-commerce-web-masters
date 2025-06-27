@@ -1,10 +1,10 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import AppLayout from '../components/AppLayout';
 import { lazy } from 'react';
-import Cart from '../pages/Cart';
-import Checkout from '../pages/Checkout';
 
 const Home = lazy(() => import('../pages/Home'));
+const Cart = lazy(() => import('../pages/Cart'));
+const Checkout = lazy(() => import('../pages/Checkout'));
 const Blog = lazy(() => import('../pages/Blog/Blog'));
 const Contact = lazy(() => import('../pages/Contact'));
 const Shop = lazy(() => import('../components/Shop/Shop'));

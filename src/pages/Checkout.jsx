@@ -36,6 +36,7 @@ const Checkout = () => {
                 <img
                   src={item.images?.[0]}
                   alt={item.title}
+                  loading='lazy'
                   className="h-full w-full rounded object-cover"
                 />
               </div>

@@ -16,6 +16,7 @@ export const CartItem = ({ item, incrementQuantity, decrementQuantity, removeIte
           <img
             src={item.images?.[0]}
             alt={item.title}
+            loading="lazy"
             className="w-24 h-24 object-cover rounded-md"
           />
   

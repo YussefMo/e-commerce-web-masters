@@ -1,11 +1,13 @@
 import { FaStar } from 'react-icons/fa';
+import { useCart } from '../../../context/CartContext';
 
 function ProductCardWithAdd({ product }) {
   const discountPercentage = 15;
   const discountedPrice = product.price * (1 - discountPercentage / 100);
+  const { addItem } = useCart();
 
   return (
-    <div className="relative m-2 flex w-full max-w-xs flex-col overflow-hidden border border-gray-300 bg-white h-[450px]">
+    <div className="relative m-2 flex h-[450px] w-full max-w-xs flex-col overflow-hidden border border-gray-300 bg-white">
       <div className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl">
         <img
           className="w-full object-cover"
@@ -44,6 +46,7 @@ function ProductCardWithAdd({ product }) {
         </div>
         <a
           href="#"
+          onClick={() => addItem(product)}
           className="flex items-center justify-center rounded-full bg-yellow-500 px-5 py-2.5 text-center text-sm font-medium text-black hover:bg-gray-700 hover:text-white focus:ring-4 focus:ring-blue-300 focus:outline-none"
         >
           <svg

@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import AppLayout from '../components/AppLayout';
 import { lazy } from 'react';
+import Cart from '../pages/Cart';
 
 const Home = lazy(() => import('../pages/Home'));
 const Blog = lazy(() => import('../pages/Blog/Blog'));
@@ -28,6 +29,10 @@ export const router = createBrowserRouter([
       {
         path: '/contact',
         element: <Contact />
+      },
+      {
+        path: '/cart',
+        element: <Cart />
       }
     ]
   }

@@ -1,0 +1,38 @@
+import { useContext } from 'react';
+import banner from '../../../assets/images/bacola-banner-18.jpg.png';
+import { ShopContext } from '../../../context/ShopContext';
+import Spinner from '../../Spinner';
+import Item from './Item';
+import Sorting from './Sorting';
+
+function Products() {
+  const { allData, loading, error } = useContext(ShopContext);
+
+  if (loading) return <Spinner />;
+  if (error) return <p>Error...</p>;
+
+  return (
+    <div className="flex flex-col gap-5">
+      {/* Banner >>>> Image */}
+      <div className="banner">
+        <img
+          src={banner}
+          alt="img not found"
+          className="h-full w-full rounded-xl"
+        />
+      </div>
+
+      {/* Sorting Products */}
+      <Sorting />
+
+      {/* Showing Products */}
+      <div className="grid rounded-xl border border-[#EDEEF5] md:grid-cols-2 lg:grid-cols-4">
+        {allData.map((el) => (
+          <Item key={el.id} el={el} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default Products;

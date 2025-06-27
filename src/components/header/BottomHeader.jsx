@@ -20,8 +20,8 @@ function BottomHeader() {
       {/* nav items */}
       <ul className="flex items-center max-lg:hidden">
         <li>
-          <a href="#" className="text-xs text-primaryColor flex items-center gap-1 hover:text-primaryColor transition
-          bg-[#F0FAFF] px-3 py-2 rounded-2xl">HOME <FaAngleDown /></a>
+          <Link to="#" className="text-xs text-primaryColor flex items-center gap-1 hover:text-primaryColor transition
+          bg-[#F0FAFF] px-3 py-2 rounded-2xl">HOME <FaAngleDown /></Link>
         </li>
         <li>
           <Link to={"Shop"} className="text-xs text-blackColor flex items-center gap-1 hover:text-primaryColor transition px-3 py-2 rounded-2xl hover:bg-[#F0FAFF]">
@@ -44,14 +44,15 @@ function BottomHeader() {
           </a>
         </li>
         <li>
-          <a href="#" className="text-xs text-blackColor flex items-center gap-1 hover:text-primaryColor transition px-3 py-2 rounded-2xl hover:bg-[#F0FAFF]">
+          <Link to="/blog" className="text-xs text-blackColor flex items-center gap-1 hover:text-primaryColor transition px-3 py-2 rounded-2xl hover:bg-[#F0FAFF]">
             BLOG
-          </a>
+          </Link>
         </li>
         <li>
-          <a href="#" className="text-xs text-blackColor flex items-center gap-1 hover:text-primaryColor transition px-3 py-2 rounded-2xl hover:bg-[#F0FAFF]">
+          
+          <Link to="contact" className="text-xs text-blackColor flex items-center gap-1 hover:text-primaryColor transition px-3 py-2 rounded-2xl hover:bg-[#F0FAFF]">
             CONTACT
-          </a>
+          </Link>
         </li>
       </ul>
       {/* toggle menu */}

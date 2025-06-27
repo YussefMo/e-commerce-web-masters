@@ -1,5 +1,6 @@
 import {ShopContext} from "../../context/ShopContext"
 import { useContext, useEffect, useState } from "react";
+import Spinner from "../Spinner";
 
 
 function Categories() {
@@ -34,7 +35,7 @@ function Categories() {
 
 
 
-  if (loading) return <p>Loading... </p>
+  if (loading) return <Spinner />
   if (error) return <p>Error...</p>
 
   

@@ -9,25 +9,35 @@ export const ShopContextProvider = ({ children }) => {
 
     const [allData, setAllData] = useState([])
     const [allCategories , setAllCategories] = useState([])
-    const [loading, setLoading] = useState(true)      
-    const [error, setError] = useState(null)     
-    
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState(null)
     const [sort , setSort] = useState(null)
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
 
 
 
     // fetching All Products form api
-    const getAllData = async () => {
+    const getAllData = async (page = 1) => {
+        setLoading(true);
         try {
-        const { data } = await axios.get("https://api.escuelajs.co/api/v1/products")
-        setAllData(data)
+            const limit = 10;
+            const offset = (page - 1) * limit;
+            const response = await axios.get(`https://api.escuelajs.co/api/v1/products?offset=${offset}&limit=${limit}`);
+            const { data } = response;
+            
+            // Fake total count since the API doesn't provide it
+            const totalCount = 52; 
+            setAllData(data);
+            setCurrentPage(page);
+            setTotalPages(Math.ceil(totalCount / limit));
         } catch (err) {
-        console.error("Error while fetching data:", err)
-        setError(err)
+            console.error("Error while fetching data:", err);
+            setError(err);
         } finally {
-        setLoading(false)
+            setLoading(false);
         }
-    }
+    };
 
     // fetching all Categories from api 
     const getAllCategories = async () => {
@@ -132,7 +142,7 @@ export const ShopContextProvider = ({ children }) => {
     }, [])
 
     return (
-        <ShopContext.Provider value={{ allData, loading, error , allCategories , getProductsByCategory , getFilteredDataByPrice , sort , sortingData}}>
+        <ShopContext.Provider value={{ allData, loading, error, allCategories, getProductsByCategory, getFilteredDataByPrice, sort, sortingData, getAllData, currentPage, totalPages }}>
         {children}
         </ShopContext.Provider>
     )

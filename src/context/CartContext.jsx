@@ -9,6 +9,11 @@ export function CartProvider({ children }) {
 
   const distinctItemCount = state.items.length;
 
+  const totalPrice = state.items.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
+
   const addItem = (item, quantity = 1) => {
     dispatch({ type: "ADD_ITEM", payload: { ...item, quantity } });
     toast.success(`${item.title} added to cart`);
@@ -42,6 +47,7 @@ export function CartProvider({ children }) {
       value={{
         cartItems: state.items,
         distinctItemCount,
+        totalPrice,
         addItem,
         removeItem,
         incrementQuantity,

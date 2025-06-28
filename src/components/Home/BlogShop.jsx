@@ -33,7 +33,7 @@ const blogPosts = [
     category: 'GROCERY',
     title: 'But I must explain to you how all this mistaken idea',
     date: 'Jan 13 2025',
-    imageUrl: '/src/assets/images/blog-3.jpg.png',
+    imageUrl: '/blog-3.jpg.png',
     altText: 'Blog Post 1'
   },
   {
@@ -41,7 +41,7 @@ const blogPosts = [
     category: 'GROCERY',
     title: 'The Problem With Typefaces on the Web',
     date: 'Jan 13 2025',
-    imageUrl: '/src/assets/images/blog-5.jpg.png',
+    imageUrl: '/blog-5.jpg.png',
     altText: 'Blog Post 2'
   },
   {

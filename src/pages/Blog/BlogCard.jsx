@@ -1,7 +1,7 @@
 const BlogCard = () => {
   const cardDetails = [
     {
-      Imgsrc: '../../../src/assets/images/blog-3.jpg.png',
+      Imgsrc: '/blog-3.jpg.png',
       subTitle: 'Grocery',
       title: 'But I must explain to you how all this mistaken idea',
       date: { date: 'Jan 13 2025 ', address: ' Sinan ISIK' },
@@ -10,7 +10,7 @@ const BlogCard = () => {
     },
 
     {
-      Imgsrc: '../../../src/assets/images/blog-5.jpg.png',
+      Imgsrc: '/blog-5.jpg.png',
       subTitle: 'Grocery',
       title: 'The Problem With Typefaces on the Web',
       date: { date: 'Jan 13 2025 ', address: ' Sinan ISIK' },

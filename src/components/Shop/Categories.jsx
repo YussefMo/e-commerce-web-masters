@@ -1,28 +1,26 @@
 import {ShopContext} from "../../context/ShopContext"
 import { useContext, useEffect, useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import Spinner from "../Spinner";
 
 
 function Categories() {
 
-  const { allCategories, loading, error , getFilteredDataByPrice , getProductsByCategory } = useContext(ShopContext);
-
-  const [selectedCategories, setSelectedCategories] = useState([]);
-  
+  const { allCategories, loading, error , getFilteredDataByPrice } = useContext(ShopContext);
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const categoryIdFromUrl = searchParams.get('category');
 
   const [minPrice, setMinPrice] = useState("")
   const [maxPrice, setMaxPrice] = useState("")
 
   const handleChange = (id) => {
-    setSelectedCategories((prev) =>
-      prev.includes(id) ? prev.filter((c) => c !== id) : [...prev, id]
-    );
+    if (parseInt(categoryIdFromUrl) === id) {
+      navigate(`/shop`);
+    } else {
+      navigate(`/shop?category=${id}`);
+    }
   };
-
-
-  useEffect(()=> {
-    getProductsByCategory({selectedCategories})
-  },[selectedCategories])
 
 
   useEffect(()=> {
@@ -59,6 +57,7 @@ function Categories() {
                     type="checkbox" 
                     id= {el.id}
                     onChange={() => handleChange(el.id)}
+                    checked={parseInt(categoryIdFromUrl) === el.id}
                     />
 
                   <label htmlFor= {el.id} > {el.name} </label>

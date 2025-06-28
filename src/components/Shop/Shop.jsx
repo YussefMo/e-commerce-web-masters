@@ -10,13 +10,18 @@ function useQuery() {
 }
 
 function Shop() {
-  const { getAllData, currentPage, totalPages } = useContext(ShopContext);
+  const { getAllData, getProductsByCategory, currentPage, totalPages } = useContext(ShopContext);
   const query = useQuery();
   const page = parseInt(query.get('page') || '1', 10);
+  const categoryId = query.get('category');
 
   useEffect(() => {
-    getAllData(page);
-  }, [page]);
+    if (categoryId) {
+      getProductsByCategory(categoryId);
+    } else {
+      getAllData(page);
+    }
+  }, [page, categoryId]);
 
   return (
     <div className="container mx-auto px-4">

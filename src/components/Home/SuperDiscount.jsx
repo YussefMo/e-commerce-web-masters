@@ -1,0 +1,41 @@
+import { useEffect, useState } from 'react';
+import { getAllProducts } from '../../lib/products.api';
+import ProductWithPriceCard from './ProductCards/ProductWithPriceCard';
+import Spinner from '../Spinner';
+
+function SuperDiscount() {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const allProducts = await getAllProducts();
+        setProducts(allProducts.slice(7, 17)); // Get 10 products from index 7 to 17
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  return (
+    <div className="mb-10">
+      <div className="w-full bg-[#FBEACF] py-3 text-center text-3xl">
+        <span className="font-semibold">SUPER DISCOUNT FOR YOUR</span>
+        <span className="font-bold"> FIRST PURCHASE.</span>
+      </div>
+      <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5">
+        {!products ? (
+          <Spinner />
+        ) : (
+          products.map((product) => (
+            <ProductWithPriceCard key={product.id} product={product} />
+          ))
+        )}
+      </div>
+    </div>
+  );
+}
+
+export default SuperDiscount;

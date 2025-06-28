@@ -1,7 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&family=Dosis:wght@200..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 @import 'tailwindcss';
 
+/* Custom Swiper navigation arrow color */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #000 !important; /* Change to your desired color */
+}
+
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: "Dosis", sans-serif;
+  font-size: 18px;
+  font-optical-sizing: auto;
   height: 1000px;
 }
 
@@ -23,11 +32,11 @@ body {
 }
 
 @theme {
-    --color-primaryColor: #35AFA0;
-    --color-blackColor: #3E445A;
-    --color-footerBg: #F7F8FD;
-    --color-graycolor : #9B9BB4;
-    --color-blog-text :#202435,
+  --color-primaryColor: #35afa0;
+  --color-blackColor: #3e445a;
+  --color-footerBg: #f7f8fd;
+  --color-graycolor: #9b9bb4;
+  --color-blog-text: #202435;
 }
 
 .post-text {

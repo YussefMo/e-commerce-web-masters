@@ -3,6 +3,8 @@ import AppLayout from '../components/AppLayout';
 import { lazy } from 'react';
 
 const Home = lazy(() => import('../pages/Home'));
+const Cart = lazy(() => import('../pages/Cart'));
+const Checkout = lazy(() => import('../pages/Checkout'));
 const Blog = lazy(() => import('../pages/Blog/Blog'));
 const Contact = lazy(() => import('../pages/Contact'));
 const Shop = lazy(() => import('../components/Shop/Shop'));
@@ -28,6 +30,14 @@ export const router = createBrowserRouter([
       {
         path: '/contact',
         element: <Contact />
+      },
+      {
+        path: '/cart',
+        element: <Cart />
+      },
+      {
+        path: '/checkout',
+        element: <Checkout />
       }
     ]
   }

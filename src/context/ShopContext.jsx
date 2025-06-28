@@ -36,6 +36,7 @@ export const ShopContextProvider = ({ children }) => {
     } finally {
       setLoading(false);
     }
+
   };
 
   // fetching all Categories from api
@@ -50,6 +51,25 @@ export const ShopContextProvider = ({ children }) => {
       setError(err);
     } finally {
       setLoading(false);
+
+
+    // filterData by Category
+    const getProductsByCategory = async (categoryId) => {
+        setLoading(true);
+        try {
+            let url = "https://api.escuelajs.co/api/v1/products";
+            if (categoryId) {
+                url = `https://api.escuelajs.co/api/v1/categories/${categoryId}/products`;
+            }
+            const { data } = await axios.get(url);
+            setAllData(data);
+        } catch (err) {
+            console.error("Error while fetching data:", err);
+            setError(err);
+        } finally {
+            setLoading(false);
+        }
+
     }
   };
 
@@ -91,6 +111,7 @@ export const ShopContextProvider = ({ children }) => {
     } catch (err) {
       console.error('Error fetching filtered data:', err);
     }
+
   };
 
   // this function to sorting data in select
@@ -199,3 +220,18 @@ export const ShopContextProvider = ({ children }) => {
     </ShopContext.Provider>
   );
 };
+
+
+
+    useEffect(() => {
+        getAllData();
+        getAllCategories();
+    }, []);
+
+    return (
+        <ShopContext.Provider value={{ allData, loading, error, allCategories, getProductsByCategory, getFilteredDataByPrice, sort, sortingData, getAllData, currentPage, totalPages }}>
+        {children}
+        </ShopContext.Provider>
+    )
+}
+

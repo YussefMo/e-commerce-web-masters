@@ -7,7 +7,7 @@ import { useCart } from '../../context/CartContext';
 
 function MiddleHeader() {
   const navigate = useNavigate();
-  const { distinctItemCount } = useCart();
+  const { distinctItemCount, totalPrice } = useCart();
   const navigateToCart = () => {
     navigate('/cart');
   };
@@ -28,7 +28,9 @@ function MiddleHeader() {
         <div className="flex h-10 w-10 items-center justify-center rounded-full border border-[#E2E4EC]">
           <AiOutlineUser className="text-blackColor text-lg" />
         </div>
-        <span className="text-blackColor text-xs font-semibold">$0.00</span>
+        <span className="text-blackColor text-xs font-semibold">
+          ${totalPrice.toFixed(2)}
+        </span>
         <div
           onClick={navigateToCart}
           className="relative flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-[#FFF1EE]"

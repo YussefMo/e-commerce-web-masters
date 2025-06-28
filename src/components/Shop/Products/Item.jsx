@@ -1,55 +1,71 @@
+import { FaStar } from 'react-icons/fa';
+import { useCart } from '../../../context/CartContext';
 
-import { useState } from "react";
-import { FaStar } from "react-icons/fa";
+function Item({ el, onQuickView }) {
+  const { cartItems, addItem, incrementQuantity, decrementQuantity } =
+    useCart();
+  const cartItem = cartItems.find((item) => item.id === el.id);
+  const count = cartItem ? cartItem.quantity : 0;
 
-
-function Item({el}) {
-
-  const [count , setCount] = useState(0)
-
-  function handelCount (state) {
-    if(state == "plus") {
-      setCount(prev => prev + 1)
-    }else {
-      setCount(prev => Math.max(prev - 1, 0))
+  function handelCount(state) {
+    if (state === 'plus') {
+      if (count === 0) {
+        addItem(el);
+      } else {
+        incrementQuantity(el.id);
+      }
+    } else {
+      if (count > 0) {
+        decrementQuantity(el.id);
+      }
     }
   }
-  
+
   return (
-    <div className="card p-5 border-x border-b border-[#EDEEF5]">
-        <div className="img p-3 my-5 cursor-pointer">
-            <img src= {el.images[0] || el.category.image} alt="" className="w-full h-full rounded-2xl"/>
-        </div>
+    <div className="card border-x border-b border-[#EDEEF5] p-5">
+      <div className="img my-5 cursor-pointer p-3" onClick={onQuickView}>
+        <img
+          src={el.images[0] || el.category.image}
+          alt=""
+          className="h-full w-full rounded-2xl"
+        />
+      </div>
 
-        <p className="text-sm font-medium mb-2 text-[#202435]"> {el.title.split(" ").splice(0, 2).join(" ")} </p>
+      <p className="mb-2 text-sm font-medium text-[#202435]">
+        {' '}
+        {el.title.split(' ').splice(0, 2).join(' ')}{' '}
+      </p>
 
-        <span style={{color: "#00B853"}}>In stock</span>
+      <span style={{ color: '#00B853' }}>In stock</span>
 
-        <p className="flex items-center text-xs my-2 text-[#FFCD00]">
-            <FaStar /> 
-            <FaStar /> 
-            <FaStar /> 
-            <FaStar /> 
-            <FaStar /> 
-            <span className="ms-2 text-[#71778E]">1 review</span>
-        </p>
+      <p className="my-2 flex items-center text-xs text-[#FFCD00]">
+        <FaStar />
+        <FaStar />
+        <FaStar />
+        <FaStar />
+        <FaStar />
+        <span className="ms-2 text-[#71778E]">1 review</span>
+      </p>
 
-        <p className="font-bold text-[#D51243]">${el.price} </p>
+      <p className="font-bold text-[#D51243]">${el.price} </p>
 
-        <div className="w-full flex justify-center items-center my-2 border border-[#EDEEF5] rounded-3xl overflow-hidden">
-            <span 
-              className="w-1/4 text-center bg-gray-200 p-1 cursor-pointer"
-              onClick={()=> handelCount("min")}
-            >-</span>
-            <span className="w-1/2 text-center "> {count} </span>
-            <span 
-              className="w-1/4 text-center bg-[#FFCD00] p-1 cursor-pointer"
-              onClick={()=> handelCount("plus")}
-            >+</span>
-        </div>
-
+      <div className="my-2 flex w-full items-center justify-center overflow-hidden rounded-3xl border border-[#EDEEF5]">
+        <span
+          className="w-1/4 cursor-pointer bg-gray-200 p-1 text-center"
+          onClick={() => handelCount('min')}
+        >
+          -
+        </span>
+        <span className="w-1/2 text-center"> {count} </span>
+        <span
+          className="w-1/4 cursor-pointer bg-[#FFCD00] p-1 text-center"
+          onClick={() => handelCount('plus')}
+        >
+          +
+        </span>
+      </div>
     </div>
-  )
+  );
 }
 
-export default Item
+export default Item;

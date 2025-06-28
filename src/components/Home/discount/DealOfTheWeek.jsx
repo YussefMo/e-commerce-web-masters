@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { getAllProducts } from '../../../lib/products.api';
 import Spinner from '../../Spinner';
 
-function DealOfTheWeek() {
+function DealOfTheWeek({ onQuickView }) {
   const [firstProduct, setFirstProduct] = useState(null);
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
@@ -91,7 +91,10 @@ function DealOfTheWeek() {
         Remains until the end of the offer
       </div>
 
-      <div className="relative mb-6">
+      <div
+        className="relative mb-6 cursor-pointer"
+        onClick={() => onQuickView(firstProduct)}
+      >
         <div className="absolute top-0 left-0 -mt-4 -ml-4 flex h-16 w-16 items-center justify-center rounded-full bg-red-500 text-lg font-bold text-white">
           18%
         </div>

@@ -1,9 +1,12 @@
-function ProductWithPriceCard({ product }) {
+function ProductWithPriceCard({ product, onQuickView }) {
   const { title, price, images } = product;
   const discountedPrice = (price * 0.82).toFixed(2); // 18% discount
 
   return (
-    <div className="overflow-hidden border-1 border-gray-300 bg-white py-5">
+        <div
+      className="cursor-pointer overflow-hidden border-1 border-gray-300 bg-white py-5"
+      onClick={onQuickView}
+    >
       <div className="relative">
         <img
           src={images[0]}

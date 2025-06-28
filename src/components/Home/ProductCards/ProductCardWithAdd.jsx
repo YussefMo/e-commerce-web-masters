@@ -1,14 +1,17 @@
 import { FaStar } from 'react-icons/fa';
 import { useCart } from '../../../context/CartContext';
 
-function ProductCardWithAdd({ product }) {
+function ProductCardWithAdd({ product, onQuickView }) {
   const discountPercentage = 15;
   const discountedPrice = product.price * (1 - discountPercentage / 100);
   const { addItem } = useCart();
 
   return (
     <div className="relative m-2 flex h-[450px] w-full max-w-xs flex-col overflow-hidden border border-gray-300 bg-white">
-      <div className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl">
+      <div
+        className="relative mx-3 mt-3 flex h-60 cursor-pointer overflow-hidden rounded-xl"
+        onClick={onQuickView}
+      >
         <img
           className="w-full object-cover"
           src={product.images[0]}
@@ -20,7 +23,7 @@ function ProductCardWithAdd({ product }) {
         </span>
       </div>
       <div className="mt-4 space-y-2 px-5 pb-5">
-        <button className="text-left">
+        <button className="text-left" onClick={onQuickView}>
           <h5 className="font-bold tracking-tight text-slate-900">
             {product.title}
           </h5>
@@ -46,7 +49,11 @@ function ProductCardWithAdd({ product }) {
         </div>
         <a
           href="#"
-          onClick={() => addItem(product)}
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            addItem(product);
+          }}
           className="flex items-center justify-center rounded-full bg-yellow-500 px-5 py-2.5 text-center text-sm font-medium text-black hover:bg-gray-700 hover:text-white focus:ring-4 focus:ring-blue-300 focus:outline-none"
         >
           <svg

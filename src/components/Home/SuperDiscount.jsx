@@ -1,10 +1,20 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { getAllProducts } from '../../lib/products.api';
 import ProductWithPriceCard from './ProductCards/ProductWithPriceCard';
 import Spinner from '../Spinner';
+import ProductQuickView from '../Shop/Products/ProductQuickView';
+import { ShopContext } from '../../context/ShopContext';
 
 function SuperDiscount() {
   const [products, setProducts] = useState([]);
+  const [quickViewProduct, setQuickViewProduct] = useState(null);
+  const { relatedProduct, relatedProducts } = useContext(ShopContext);
+
+  useEffect(() => {
+    if (quickViewProduct) {
+      relatedProduct(quickViewProduct.category.id, quickViewProduct.id);
+    }
+  }, [quickViewProduct, relatedProduct]);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -30,10 +40,22 @@ function SuperDiscount() {
           <Spinner />
         ) : (
           products.map((product) => (
-            <ProductWithPriceCard key={product.id} product={product} />
+            <ProductWithPriceCard
+              key={product.id}
+              product={product}
+              onQuickView={() => setQuickViewProduct(product)}
+            />
           ))
         )}
       </div>
+
+      {quickViewProduct && (
+        <ProductQuickView
+          product={quickViewProduct}
+          onClose={() => setQuickViewProduct(null)}
+          relatedProducts={relatedProducts}
+        />
+      )}
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -6,9 +6,19 @@ import { Navigation } from 'swiper/modules';
 import { getAllProducts } from '../../../lib/products.api';
 import ProductCardWithAdd from '../ProductCards/ProductCardWithAdd';
 import Spinner from '../../Spinner';
+import ProductQuickView from '../../Shop/Products/ProductQuickView';
+import { ShopContext } from '../../../context/ShopContext';
 
 function Carousel() {
   const [products, setProducts] = useState([]);
+  const [quickViewProduct, setQuickViewProduct] = useState(null);
+  const { relatedProduct, relatedProducts } = useContext(ShopContext);
+
+  useEffect(() => {
+    if (quickViewProduct) {
+      relatedProduct(quickViewProduct.category.id, quickViewProduct.id);
+    }
+  }, [quickViewProduct, relatedProduct]);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -49,10 +59,21 @@ function Carousel() {
       >
         {products.map((product) => (
           <SwiperSlide key={product.id}>
-            <ProductCardWithAdd product={product} />
+            <ProductCardWithAdd 
+              product={product} 
+              onQuickView={() => setQuickViewProduct(product)}
+            />
           </SwiperSlide>
         ))}
       </Swiper>
+
+      {quickViewProduct && (
+        <ProductQuickView
+          product={quickViewProduct}
+          onClose={() => setQuickViewProduct(null)}
+          relatedProducts={relatedProducts}
+        />
+      )}
     </div>
   );
 }

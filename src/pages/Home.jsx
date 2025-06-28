@@ -6,19 +6,17 @@ import Hero from '../components/Home/Hero';
 import ShopNow from '../components/Home/ShopNow';
 import SuperDiscount from '../components/Home/SuperDiscount';
 
-
 function Home() {
   return (
     <>
       <Hero />
       <div className="mx-auto max-w-[1200px] px-3">
-          <Category />
-          <Discounts />
-          <ShopNow />
-          <BestSealers />
-          <SuperDiscount />
-          <BlogShop />
-        
+        <Category />
+        <Discounts />
+        <ShopNow />
+        <BestSealers />
+        <SuperDiscount />
+        <BlogShop />
       </div>
     </>
   );

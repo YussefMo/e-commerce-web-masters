@@ -3,7 +3,7 @@ import { getAllProducts } from '../../../lib/products.api';
 import Spinner from '../../Spinner';
 import ProductWithPriceCard from '../ProductCards/ProductWithPriceCard';
 
-function OtherDiscount() {
+function OtherDiscount({ onQuickView }) {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -27,7 +27,11 @@ function OtherDiscount() {
         <Spinner />
       ) : (
         products.map((product) => (
-          <ProductWithPriceCard key={product.id} product={product} />
+          <ProductWithPriceCard
+            key={product.id}
+            product={product}
+            onQuickView={() => onQuickView(product)}
+          />
         ))
       )}
     </>

@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import AppLayout from '../components/AppLayout';
 import { lazy } from 'react';
+import AboutUs from '../pages/AboutUs';
 
 const Home = lazy(() => import('../pages/Home'));
 const Cart = lazy(() => import('../pages/Cart'));
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
       {
         path: '/contact',
         element: <Contact />
+      },
+      {
+        path:'/about',
+        element: <AboutUs />
       },
       {
         path: '/cart',

@@ -5,7 +5,7 @@ function TopHeader() {
     <div className="flex flex-col lg:flex-row gap-1 justify-between lg:gap-4 py-2.5 border-b border-b-[#E3E4E6]">
       <ul className="flex items-center justify-center gap-4">
         <li>
-          <Link to="about" className="text-xs text-blackColor hover:text-primaryColor transition">About Us</Link>
+          <Link to="/about" className="text-xs text-blackColor hover:text-primaryColor transition">About Us</Link>
         </li>
         <li>
           <a href="#" className="text-xs text-blackColor hover:text-primaryColor transition">Compare</a>

@@ -1,9 +1,14 @@
-import {logoImg} from './../../assets/index';
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  UserButton
+} from '@clerk/clerk-react';
 import { FaSearch } from 'react-icons/fa';
-import { IoBagOutline } from "react-icons/io5";
-import { AiOutlineUser } from "react-icons/ai";
+import { IoBagOutline } from 'react-icons/io5';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../../context/CartContext';
+import { logoImg } from './../../assets/index';
 
 function MiddleHeader() {
   const navigate = useNavigate();
@@ -25,9 +30,13 @@ function MiddleHeader() {
       </div>
       {/* account + cart */}
       <div className="flex items-center gap-2 max-[591px]:order-2">
-        <div className="flex h-10 w-10 items-center justify-center rounded-full border border-[#E2E4EC]">
-          <AiOutlineUser className="text-blackColor text-lg" />
-        </div>
+        <SignedOut>
+          <SignInButton />
+        </SignedOut>
+        <SignedIn>
+          <UserButton />
+        </SignedIn>
+
         <span className="text-blackColor text-xs font-semibold">
           ${totalPrice.toFixed(2)}
         </span>
@@ -45,4 +54,4 @@ function MiddleHeader() {
   );
 }
 
-export default MiddleHeader
+export default MiddleHeader;
